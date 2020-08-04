@@ -23,6 +23,8 @@ pipeline {
 
 // steps
 def buildApp() {
+	echo "Build"
+	
 	dir ('section_4/code/cd_pipeline' ) {
 		def appImage = docker.build("hands-on-jenkins/myapp:${BUILD_NUMBER}")
 	}
@@ -30,6 +32,7 @@ def buildApp() {
 
 def deploy(environment) {
 
+	echo "Deploy"
 	def containerName = ''
 	def port = ''
 
@@ -38,7 +41,7 @@ def deploy(environment) {
 		port = "8888"
 	} 
 	else {
-		println "Environment not valid"
+		echo "Environment not valid"
 		System.exit(0)
 	}
 
